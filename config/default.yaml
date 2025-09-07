@@ -1,0 +1,69 @@
+# Attention Is All You Need - Default Configuration
+
+# Model Architecture
+model:
+  d_model: 512           # Model dimension
+  n_heads: 8             # Number of attention heads
+  n_layers: 6            # Number of encoder/decoder layers
+  d_ff: 2048            # Feed-forward network dimension
+  dropout: 0.1          # Dropout rate
+  max_seq_len: 512      # Maximum sequence length
+  vocab_size: 32000     # Vocabulary size
+  tie_weights: true     # Tie embedding and output projection weights
+  
+# Position Encoding
+position_encoding:
+  type: "sinusoidal"    # "sinusoidal" or "learned"
+  
+# Layer Normalization
+layer_norm:
+  type: "pre"           # "pre" or "post" norm
+  eps: 1e-5            # LayerNorm epsilon
+
+# Training
+training:
+  batch_size: 32
+  max_epochs: 100
+  gradient_clip: 1.0
+  label_smoothing: 0.1
+  
+# Optimizer
+optimizer:
+  type: "adam"
+  lr: 0.0001
+  betas: [0.9, 0.98]
+  eps: 1e-9
+  weight_decay: 0.0
+  
+# Learning Rate Schedule
+lr_schedule:
+  type: "noam"          # Noam schedule from paper
+  warmup_steps: 4000
+  factor: 1.0
+  
+# Data
+data:
+  src_lang: "en"
+  tgt_lang: "de"
+  max_length: 100
+  min_length: 1
+  
+# Inference
+inference:
+  beam_size: 4
+  length_penalty: 0.6
+  max_decode_length: 200
+  
+# Logging and Checkpoints
+logging:
+  log_level: "INFO"
+  log_interval: 100     # Log every N steps
+  save_interval: 1000   # Save checkpoint every N steps
+  tensorboard_dir: "runs"
+  
+# System
+system:
+  seed: 42
+  device: "auto"        # "auto", "cpu", "cuda"
+  num_workers: 4        # Data loader workers
+  pin_memory: true

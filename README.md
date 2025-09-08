@@ -75,11 +75,11 @@ system:
 ## 📋 Implementation Roadmap
 
 - [x] **Step 0**: Project skeleton, configuration, logging, seed management
-- [ ] **Step 1**: LayerNorm and stable softmax
-- [ ] **Step 2**: Scaled dot-product attention
-- [ ] **Step 3**: Multi-Head Attention
-- [ ] **Step 4**: Positional encodings (sinusoidal & learned)
-- [ ] **Step 5**: Position-wise Feed-Forward Network
+- [x] **Step 1**: LayerNorm and stable softmax
+- [x] **Step 2**: Scaled dot-product attention
+- [x] **Step 3**: Multi-Head Attention
+- [x] **Step 4**: Positional encodings (sinusoidal & learned)
+- [x] **Step 5**: Position-wise Feed-Forward Network
 - [ ] **Step 6**: Encoder layer & stack
 - [ ] **Step 7**: Decoder layer & stack
 - [ ] **Step 8**: Embeddings and weight tying

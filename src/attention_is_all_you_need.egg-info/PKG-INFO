@@ -1,3 +1,23 @@
+Metadata-Version: 2.4
+Name: attention-is-all-you-need
+Version: 0.1.0
+Summary: Implementation of 'Attention Is All You Need' Transformer from scratch
+Author-email: Your Name <your.email@example.com>
+License: MIT
+Requires-Python: >=3.10
+Description-Content-Type: text/markdown
+Requires-Dist: torch>=2.4.0
+Requires-Dist: numpy>=2.1.0
+Requires-Dist: pyyaml>=6.0.2
+Requires-Dist: tqdm>=4.67.0
+Requires-Dist: pytest>=8.3.0
+Requires-Dist: tensorboard>=2.18.0
+Requires-Dist: matplotlib>=3.9.0
+Provides-Extra: dev
+Requires-Dist: black; extra == "dev"
+Requires-Dist: flake8; extra == "dev"
+Requires-Dist: mypy; extra == "dev"
+
 # Attention Is All You Need - Implementation
 
 A from-scratch implementation of the Transformer architecture from the paper ["Attention Is All You Need"](https://arxiv.org/abs/1706.03762) by Vaswani et al.
@@ -80,10 +100,10 @@ system:
 - [x] **Step 3**: Multi-Head Attention
 - [x] **Step 4**: Positional encodings (sinusoidal & learned)
 - [x] **Step 5**: Position-wise Feed-Forward Network
-- [x] **Step 6**: Encoder layer & stack
-- [x] **Step 7**: Decoder layer & stack
-- [x] **Step 8**: Embeddings and weight tying
-- [x] **Step 9**: Data pipeline & tokenization
+- [ ] **Step 6**: Encoder layer & stack
+- [ ] **Step 7**: Decoder layer & stack
+- [ ] **Step 8**: Embeddings and weight tying
+- [ ] **Step 9**: Data pipeline & tokenization
 - [ ] **Step 10**: Training objective and label smoothing
 - [ ] **Step 11**: Optimizer and learning rate schedule
 - [ ] **Step 12**: Training loop and mixed precision

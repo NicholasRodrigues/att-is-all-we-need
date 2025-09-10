@@ -45,22 +45,7 @@ class EncoderLayer(nn.Module):
                 x: torch.Tensor,
                 attention_mask: Optional[torch.Tensor] = None) -> Tuple[torch.Tensor, torch.Tensor]:
         
-        if self.norm_first:
-            x_norm = self.norm1(x)
-            attention_output, attention_weights = self.self_attention(x_norm, x_norm, x_norm, attention_mask)
-            x = x + self.dropout1(attention_output)
-        else:
-            attention_output, attention_weights = self.self_attention(x, x, x, attention_mask)
-            x = self.norm1(x + self.dropout1(attention_output))
+        attention_output, attention_weights = self.self_attention(x, x, x, attention_mask)
+        ff_output = self.feed_forward(attention_output)
         
-        
-        if self.norm_first:
-            x_norm = self.norm2(x)
-            ff_output = self.feed_forward(x_norm)
-            x = x + self.dropout2(ff_output)
-        else:
-            ff_output = self.feed_forward(x)
-            x = self.norm2(x + self.dropout2(ff_output))
-        
-        
-        return x, attention_weights
+        return attention_output, attention_weights

@@ -5,7 +5,7 @@ from src.transformer.utils.positional_encoding import PositionalEncoder
 
 from ..ecodeco.decoder_layer import DecoderLayer
 
-class Decoder(nn.Module):
+class DecoderStack(nn.Module):
     def __init__(self, d_model, vocab_len, n_layers: int = 6):
         super(Decoder, self).__init__()
         self.n_layers = n_layers

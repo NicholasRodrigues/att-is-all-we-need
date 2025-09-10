@@ -5,9 +5,9 @@ from src.transformer.utils.positional_encoding import PositionalEncoder
 
 from ..ecodeco.encoder_layer import EncoderLayer
 
-class Encoder(nn.Module):
+class EncoderStack(nn.Module):
     def __init__(self, d_model, vocab_len, n_layers: int = 6):
-        super(Encoder, self).__init__()
+        super(EncoderStack, self).__init__()
         self.n_layers = n_layers
         self.embeddings = nn.Embedding(vocab_len, d_model)
         self.positional = PositionalEncoder(d_model)

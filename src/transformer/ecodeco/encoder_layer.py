@@ -44,8 +44,6 @@ class EncoderLayer(nn.Module):
     def forward(self, 
                 x: torch.Tensor,
                 attention_mask: Optional[torch.Tensor] = None) -> Tuple[torch.Tensor, torch.Tensor]:
-
-     
         
         if self.norm_first:
             x_norm = self.norm1(x)

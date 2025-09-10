@@ -55,6 +55,8 @@ class FFNetwork(nn.Module):
         
         self.linear1 = nn.Linear(d_model, d_ff, bias=True)
         self.linear2 = nn.Linear(d_ff, d_model, bias=True)
+    
+        self.norm = nn.LayerNorm(d_model, eps=1e-6)
         
         self.dropout = nn.Dropout(dropout)
         
@@ -88,19 +90,14 @@ class FFNetwork(nn.Module):
             raise ValueError(f"Input last dimension must be {self.d_model}, got: {x.size(-1)}")
         
         batch_size, seq_len, _ = x.size()
-        logger.debug(f"Processing FFN forward pass with input shape: {x.shape}")
-        
-        x = self.linear1(x)  # (batch_size, seq_len, d_ff)
-        logger.debug(f"After first linear layer: {x.shape}")
-        
-        x = self.activation(x)
-        logger.debug(f"Applied {self.activation_name} activation")
-        
+        residual = x
+        x = self.linear2(self.activation(self.linear1(x)))
         x = self.dropout(x)
         
-        x = self.linear2(x)  # (batch_size, seq_len, d_model)
-        logger.debug(f"FFN forward pass completed. Output shape: {x.shape}")
+        x += residual
         
+        x = self.norm(x)
+       
         return x
     
     def extra_repr(self) -> str:

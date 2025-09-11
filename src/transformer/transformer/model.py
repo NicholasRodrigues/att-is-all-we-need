@@ -17,3 +17,13 @@ class Encoder(nn.Module):
     self.norm = nn.LayerNorm(d_model, eps=1e-6)
     self.scale_emb = scale_emb
     self.d_model = d_model
+    
+  def forward(self, vocab_seq, mask, return_attn: bool = False):
+    attn_list = []
+    enc_output = self.src_vocab_embedding(vocab_seq)
+    enc_output = self.drop(self.position_encoder(enc_output))
+    enc_output = self.norm(enc_output)
+
+    for layer in self.l_stack:
+      enc_output, slf_attn = layer(enc_output, mask)
+      slf_attn_list += [slf_attn]
